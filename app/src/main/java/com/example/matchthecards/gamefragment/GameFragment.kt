@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.matchthecards.R
 import com.example.matchthecards.databinding.FragmentGameBinding
+import com.example.matchthecards.menufragment.COLUMN_SIZE
+import com.example.matchthecards.menufragment.DIFFICULTY_LEVEL
 import com.example.matchthecards.model.Products
 import com.example.matchthecards.model.ProductsObject
 
@@ -29,6 +31,7 @@ class GameFragment : Fragment() {
         binding.gameVm = ViewModelProviders.of(this).get(GameViewModel::class.java).also { view ->
             view.productList.observe(this, Observer<List<Products>> { list ->
                 if(list.isNotEmpty()){
+                    view.setDifficultyLevel(determineDifficultyLevel())
                     view.setProductsAdapter(list)
                     setRecyclerViewProperties()
                 }
@@ -42,9 +45,19 @@ class GameFragment : Fragment() {
     }
 
 
-    fun setRecyclerViewProperties() {
+    private fun setRecyclerViewProperties() {
+        val size = arguments?.getInt(COLUMN_SIZE) as Int
         binding.productListView.setHasFixedSize(true)
-        binding.productListView.layoutManager = GridLayoutManager(context ,5)
+        binding.productListView.layoutManager = GridLayoutManager(context ,size)
 
+    }
+
+    private fun determineDifficultyLevel() : Int {
+        val diff = arguments?.get(DIFFICULTY_LEVEL)
+        when (diff) {
+            "Legend" -> return 4
+            "Amateur" -> return 2
+            else -> return 3
+        }
     }
 }

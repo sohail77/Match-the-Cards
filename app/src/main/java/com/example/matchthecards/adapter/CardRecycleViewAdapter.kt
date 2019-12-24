@@ -21,6 +21,7 @@ class CardRecycleViewAdapter (context: Context) : RecyclerView.Adapter<CardRecyc
     private var productList = mutableListOf<Products>()
     private var matchList = mutableListOf<MatchedCard>()
     private var listener: Matcher? = null
+    private var difficultyLevel = 2
     val context = context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -44,14 +45,20 @@ class CardRecycleViewAdapter (context: Context) : RecyclerView.Adapter<CardRecyc
         productList = list as MutableList<Products>
     }
 
+    fun setDifficulty(level: Int) {
+        difficultyLevel = level
+    }
+
     private fun checkForSimilarity(position: Int, holder: ViewHolder) {
         if (matchList.size > 0) {
             if (isSimilar(position,holder)) {
                 openCard(position, holder)
-                Handler().postDelayed({
-                    listener?.matched(matchList)
-                    matchList = mutableListOf()
-                }, 2000)
+                if (matchList.size == difficultyLevel) {
+                    Handler().postDelayed({
+                        listener?.matched(matchList)
+                        matchList = mutableListOf()
+                    }, 2000)
+                }
             } else{
                 openCard(position, holder)
                 Handler().postDelayed({

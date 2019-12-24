@@ -42,6 +42,9 @@ class GameViewModel (application: Application) : AndroidViewModel(application) {
         adapter.notifyDataSetChanged()
     }
 
+    fun setDifficultyLevel(difficulty: Int) = adapter.setDifficulty(difficulty)
+
+
     fun eventListener() {
         adapter.startListeningForMatches(object : Matcher {
             override fun matched(list: List<MatchedCard>) {

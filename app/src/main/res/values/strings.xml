@@ -8,4 +8,9 @@
     <string name="score"> %d/10 </string>
     <string name="player_1">Player 1</string>
     <string name="player_2">Player 2</string>
+    <string name="column_size">Column Size</string>
+    <string name="difficulty_level">Difficulty level</string>
+    <string name="match_the_cards">Match the Cards</string>
+    <string name="plus">plus</string>
+    <string name="minus">minus</string>
 </resources>
