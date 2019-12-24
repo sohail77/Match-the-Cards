@@ -4,4 +4,5 @@ import com.example.matchthecards.model.MatchedCard
 
 interface Matcher {
     fun matched(list: List<MatchedCard>)
+    fun notMatched()
 }

@@ -1,6 +1,7 @@
 package com.example.matchthecards.gamefragment
 
 import android.app.Application
+import android.os.CountDownTimer
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
@@ -20,13 +21,18 @@ class GameViewModel (application: Application) : AndroidViewModel(application) {
     val context = application.applicationContext
     private var adapter : CardRecycleViewAdapter
     val productList = MutableLiveData<List<Products>>()
+    val player1Score = MutableLiveData<Int>()
+    val player2Score = MutableLiveData<Int>()
     var products = mutableListOf<Products>()
-
+    var isPlayer2 = MutableLiveData<Boolean>()
 
     init {
         adapter = CardRecycleViewAdapter(context)
+        player1Score.value = 0
+        player2Score.value = 0
         getProductsFromApi()
-        countScore()
+        isPlayer2.value = false
+        eventListener()
     }
 
     fun getProductsAdapter() = adapter
@@ -36,13 +42,25 @@ class GameViewModel (application: Application) : AndroidViewModel(application) {
         adapter.notifyDataSetChanged()
     }
 
-    fun countScore() {
+    fun eventListener() {
         adapter.startListeningForMatches(object : Matcher {
             override fun matched(list: List<MatchedCard>) {
                 for (i in 0 until list.size) products.removeAt(list[i].position)
                 setProductsAdapter(products)
+                updateScore()
+            }
+            override fun notMatched() {
+                isPlayer2.value = isPlayer2.value != true
             }
         })
+    }
+
+    fun updateScore() {
+        if (isPlayer2.value == false) {
+            player1Score.value = player1Score.value?.inc()
+        } else {
+            player2Score.value = player2Score.value?.inc()
+        }
     }
 
     fun getProductsFromApi() {
@@ -71,6 +89,9 @@ class GameViewModel (application: Application) : AndroidViewModel(application) {
         for (i in 0 until 5) {
             products.let { list1 -> subList.let(list1::addAll) }
         }
+        products.shuffle()
         productList.value = products
     }
+
+
 }

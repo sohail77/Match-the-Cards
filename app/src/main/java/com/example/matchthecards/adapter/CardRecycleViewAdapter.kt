@@ -56,6 +56,7 @@ class CardRecycleViewAdapter (context: Context) : RecyclerView.Adapter<CardRecyc
                 openCard(position, holder)
                 Handler().postDelayed({
                     closeCards()
+                    listener?.notMatched()
                 }, 2000)
             }
         } else {
@@ -91,7 +92,7 @@ class CardRecycleViewAdapter (context: Context) : RecyclerView.Adapter<CardRecyc
         val productImage: ImageView
             get() = itemView.card_img
 
-        val questionMark: TextView
+        val questionMark: ImageView
             get() = itemView.question_mark
 
         val productCard: CardView

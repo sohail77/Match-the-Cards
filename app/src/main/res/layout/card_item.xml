@@ -15,6 +15,7 @@
         android:layout_gravity="center"
         android:orientation="vertical"
         app:cardCornerRadius="4dp"
+        app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,13 +37,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/question_mark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/questionMark"
-                android:textSize="40sp"
-                android:textStyle="bold"
+                android:src="@drawable/shopify"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
