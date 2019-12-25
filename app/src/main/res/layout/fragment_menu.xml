@@ -37,8 +37,9 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="8dp"
             android:text="@string/match_the_cards"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:textSize="28sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/text"
             app:layout_constraintBottom_toTopOf="@id/difficulty_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,6 +65,7 @@
                 android:layout_weight="0.6"
                 android:text="@string/difficulty_level"
                 android:textSize="20sp"
+                android:textColor="@color/text"
                 android:textStyle="bold" />
 
             <ImageView
@@ -80,6 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
+                android:textColor="@color/text"
                 android:text="@{menuVm.difficultyLevel}"
                 android:textAlignment="center"
                 android:textSize="16sp" />
@@ -115,6 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/column_size"
+                android:textColor="@color/text"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -123,6 +127,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"
+                android:textColor="@color/text"
                 android:src="@drawable/minus"
                 android:onClick="@{() -> menuVm.columnSizeDecrementor()}"
                 android:contentDescription="@string/minus"/>
@@ -132,6 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
+                android:textColor="@color/text"
                 android:text="@{String.valueOf(menuVm.columnSize)}"
                 android:textAlignment="center"
                 android:textSize="16sp" />

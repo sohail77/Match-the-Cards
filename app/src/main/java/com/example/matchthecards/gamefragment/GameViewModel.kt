@@ -1,8 +1,7 @@
 package com.example.matchthecards.gamefragment
 
 import android.app.Application
-import android.os.CountDownTimer
-import android.util.Log
+import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -18,17 +17,18 @@ import retrofit2.Response
 
 class GameViewModel (application: Application) : AndroidViewModel(application) {
 
-    val context = application.applicationContext
+    val context : Context = application.applicationContext
     private var adapter : CardRecycleViewAdapter
     val productList = MutableLiveData<List<Products>>()
     val player1Score = MutableLiveData<Int>()
     val player2Score = MutableLiveData<Int>()
+    val winner = MutableLiveData<String>()
     var products = mutableListOf<Products>()
     var isPlayer2 = MutableLiveData<Boolean>()
 
     init {
         adapter = CardRecycleViewAdapter(context)
-        player1Score.value = 0
+        player1Score.value = 9
         player2Score.value = 0
         getProductsFromApi()
         isPlayer2.value = false
@@ -45,10 +45,10 @@ class GameViewModel (application: Application) : AndroidViewModel(application) {
     fun setDifficultyLevel(difficulty: Int) = adapter.setDifficulty(difficulty)
 
 
-    fun eventListener() {
+    private fun eventListener() {
         adapter.startListeningForMatches(object : Matcher {
             override fun matched(list: List<MatchedCard>) {
-                for (i in 0 until list.size) products.removeAt(list[i].position)
+                for (element in list) products.removeAt(element.position)
                 setProductsAdapter(products)
                 updateScore()
             }
@@ -64,9 +64,15 @@ class GameViewModel (application: Application) : AndroidViewModel(application) {
         } else {
             player2Score.value = player2Score.value?.inc()
         }
+
+        if (player1Score.value == 10) {
+            winner.value = "Player 1 wins!"
+        }else if (player2Score.value == 10){
+            winner.value = "Player 2 wins!"
+        }
     }
 
-    fun getProductsFromApi() {
+    private fun getProductsFromApi() {
         ProductApi.retrofitService.getProducts()
             .enqueue(object : Callback<ProductsObject> {
 
@@ -76,7 +82,6 @@ class GameViewModel (application: Application) : AndroidViewModel(application) {
                 ) {
                     val list = response.body()
                     list?.let { modifyProductList(it) }
-                    Log.e("Hello",list.toString())
 
                 }
 
@@ -96,5 +101,10 @@ class GameViewModel (application: Application) : AndroidViewModel(application) {
         productList.value = products
     }
 
+    fun shuffleCards() {
+        products.shuffle()
+        setProductsAdapter(products)
+        Toast.makeText(context,"Cards shuffled",Toast.LENGTH_LONG).show()
+    }
 
 }

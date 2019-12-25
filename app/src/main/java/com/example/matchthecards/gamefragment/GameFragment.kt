@@ -1,26 +1,29 @@
 package com.example.matchthecards.gamefragment
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.android.diceroller.ShakeDetector
 import com.example.matchthecards.R
 import com.example.matchthecards.databinding.FragmentGameBinding
 import com.example.matchthecards.menufragment.COLUMN_SIZE
 import com.example.matchthecards.menufragment.DIFFICULTY_LEVEL
 import com.example.matchthecards.model.Products
-import com.example.matchthecards.model.ProductsObject
 
 
 class GameFragment : Fragment() {
 
     private lateinit var binding: FragmentGameBinding
+    private lateinit var detector: ShakeDetector
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,9 +39,17 @@ class GameFragment : Fragment() {
                     setRecyclerViewProperties()
                 }
             })
+
+            view.winner.observe(this, Observer { winner -> showTheWinner(winner) })
         }
 
+        detector = ShakeDetector(activity)
 
+        if (!detector.isSupported()) {
+            Toast.makeText(context, "Sensor not detected cannot shuffle",Toast.LENGTH_LONG).show()
+        }
+
+        finsihGame()
         binding.lifecycleOwner = this
 
         return binding.root
@@ -52,6 +63,19 @@ class GameFragment : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (detector.isSupported())
+            detector.startListening( object : ShakeDetector.ShakeListener {
+                override fun onShake(force: Float) = binding.gameVm?.shuffleCards()
+            })
+    }
+
+    override fun onPause() {
+        detector.stopListening()
+        super.onPause()
+    }
+
     private fun determineDifficultyLevel() : Int {
         val diff = arguments?.get(DIFFICULTY_LEVEL)
         when (diff) {
@@ -60,4 +84,21 @@ class GameFragment : Fragment() {
             else -> return 3
         }
     }
+
+    @SuppressLint("RestrictedApi")
+    private fun showTheWinner(winner: String) {
+        binding.productListView.visibility = View.GONE
+        binding.player1Layout.visibility = View.GONE
+        binding.player2Layout.visibility = View.GONE
+        binding.winnerAnimation.visibility = View.VISIBLE
+        binding.winnerAnimation.playAnimation()
+        binding.winnerTxt.visibility = View.VISIBLE
+        binding.winnerTxt.text = winner
+        binding.goBackBtn.visibility = View.VISIBLE
+    }
+
+    private fun finsihGame() {
+        binding.goBackBtn.setOnClickListener { findNavController().navigate(R.id.action_gameFragment_to_menuFragment) }
+    }
+
 }

@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -74,7 +73,7 @@ class CardRecycleViewAdapter (context: Context) : RecyclerView.Adapter<CardRecyc
 
     private fun isSimilar(position: Int, holder: ViewHolder) : Boolean {
         matchList.add(MatchedCard(position,productList[position].title,holder))
-        for (name in 0 until matchList.size) if (!productList[position].title.equals(matchList[name].title)) {
+        for (name in 0 until matchList.size) if (productList[position].title != matchList[name].title) {
             return false
         }
         return true
