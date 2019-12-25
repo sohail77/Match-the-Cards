@@ -31,8 +31,8 @@ This game has been built using Kotlin whilst following the [MVVM architecture](h
 - [x] Feel free to make the app beautiful and add anything else you think would be cool!
 
 ## Sources and Library refrences
-- [Lottie] (https://airbnb.io/lottie/#/) animation library by Airbnb.
-- All the icons have been taken from [icons8] (https://icons8.com/icons) 
+- [Lottie](https://airbnb.io/lottie/#/) animation library by Airbnb.
+- All the icons have been taken from [icons8](https://icons8.com/icons) 
 
 ## Future Changes 
 - In future I would like to write my own animations to enhance the UI and I would like to link the app to google Play games to maintain a leaderboard. 
