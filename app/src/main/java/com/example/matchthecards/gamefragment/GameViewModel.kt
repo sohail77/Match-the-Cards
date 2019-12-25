@@ -31,7 +31,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
      */
     init {
         adapter = CardRecycleViewAdapter(context)
-        player1Score.value = 9
+        player1Score.value = 0
         player2Score.value = 0
         getProductsFromApi()
         isPlayer2.value = false
