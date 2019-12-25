@@ -13,4 +13,9 @@
     <string name="match_the_cards">Match the Cards</string>
     <string name="plus">plus</string>
     <string name="minus">minus</string>
+    <string name="shopify_image">Shopify Image</string>
+    <string name="product_image">product image</string>
+    <string name="trans_name">startPlayTransition</string>
+    <string name="game_transition">gameTransition</string>
+    <string name="information_button">Information Button</string>
 </resources>

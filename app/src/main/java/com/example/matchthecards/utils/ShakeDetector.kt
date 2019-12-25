@@ -21,7 +21,8 @@ class ShakeDetector(val context: FragmentActivity?) {
     private var threshold = 10.0f
     private var interval = 100
 
-    private var sensorManager: SensorManager = context?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+    private var sensorManager: SensorManager =
+        context?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
     private var listener: ShakeListener? = null
 
@@ -86,8 +87,10 @@ class ShakeDetector(val context: FragmentActivity?) {
                             // trigger shake event
                             listener?.onShake(force)
                         } else {
-                            Toast.makeText(context, "No Motion detected",
-                                    Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context, "No Motion detected",
+                                Toast.LENGTH_SHORT
+                            ).show()
 
                         }
                         lastShake = now
@@ -125,7 +128,8 @@ class ShakeDetector(val context: FragmentActivity?) {
             // Register Accelerometer Listener
             isListening = sensorManager.registerListener(
                 sensorEventListener, sensor,
-                SensorManager.SENSOR_DELAY_GAME)
+                SensorManager.SENSOR_DELAY_GAME
+            )
             listener = shakeListener
         }
     }

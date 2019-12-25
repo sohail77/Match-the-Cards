@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+                                                       
+                                                   
+
+    
+                 
+                         
+                                                                          
+           
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".menufragment.MenuFragment" android:tag="layout/fragment_menu_0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="question.json"
+            app:lottie_loop="true" />
+
+        <TextView
+            android:id="@+id/title_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/anton"
+            android:gravity="center"
+            android:text="@string/match_the_cards"
+            android:textColor="@color/text"
+            android:textSize="28sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toTopOf="@id/difficulty_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView"
+            app:layout_constraintVertical_bias="0.31" />
+
+        <LinearLayout
+            android:id="@+id/difficulty_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/col_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_txt">
+
+            <TextView
+                android:id="@+id/difficulty_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:text="@string/difficulty_level"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/minus_diff_img"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/minus"
+                android:tag="binding_1"                            
+                android:src="@drawable/minus" />
+
+            <TextView
+                android:id="@+id/difficulty_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:tag="binding_2"                 
+                android:textAlignment="center"
+                android:textColor="@color/text"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/plus_diff"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/plus"
+                android:tag="binding_3"                            
+                android:src="@drawable/plus" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/col_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/play_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/difficulty_layout">
+
+            <TextView
+                android:id="@+id/col_size_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/column_size"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/minus_col_img"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/minus"
+                android:tag="binding_4"                                  
+                android:src="@drawable/minus"
+                android:textColor="@color/text" />
+
+            <TextView
+                android:id="@+id/col_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:tag="binding_5"                            
+                android:textAlignment="center"
+                android:textColor="@color/text"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/plus_col_img"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/plus"
+                android:tag="binding_6"                                  
+                android:src="@drawable/plus" />
+
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/play_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/play"
+            android:transitionName="@string/trans_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/col_layout" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+         

@@ -1,13 +1,12 @@
 package com.example.matchthecards.api
 
-import com.example.matchthecards.model.Products
 import com.example.matchthecards.model.ProductsObject
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import retrofit2.http.*
+import retrofit2.http.GET
 import java.util.concurrent.TimeUnit
 
 
@@ -25,9 +24,12 @@ private val retrofit = Retrofit.Builder()
 
 interface ApiService {
     @GET(URL_EXTRAS)
-    fun getProducts() : Call<ProductsObject>
+    fun getProducts(): Call<ProductsObject>
 }
 
+/**
+ * Create the retrofit service
+ */
 object ProductApi {
     val retrofitService: ApiService by lazy {
         retrofit.create(ApiService::class.java)

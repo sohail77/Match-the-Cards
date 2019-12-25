@@ -1,8 +1,7 @@
 package com.example.matchthecards
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.matchthecards.gamefragment.GameFragment
+import androidx.appcompat.app.AppCompatActivity
 import com.example.matchthecards.menufragment.MenuFragment
 
 class MainActivity : AppCompatActivity() {

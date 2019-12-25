@@ -1,13 +1,11 @@
 package com.example.matchthecards.menufragment
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-class MenuViewModel (application: Application) : AndroidViewModel(application) {
+class MenuViewModel : ViewModel() {
 
 
-    val context = application.applicationContext
     val difficultyLevel = MutableLiveData<String>()
     val columnSize = MutableLiveData<Int>()
 
@@ -17,18 +15,21 @@ class MenuViewModel (application: Application) : AndroidViewModel(application) {
         columnSize.value = 5
     }
 
+    /**
+     * These 4 functions are triggered when the + and - buttons are clicked in the UI.
+     */
     fun diffIncrementor() {
-        if (difficultyLevel.value.equals("Amateur"))
-            difficultyLevel.value = "Pro"
-        else if (difficultyLevel.value.equals("Pro"))
-            difficultyLevel.value = "Legend"
+        when {
+            difficultyLevel.value.equals("Amateur") -> difficultyLevel.value = "Pro"
+            difficultyLevel.value.equals("Pro") -> difficultyLevel.value = "Legend"
+        }
     }
 
-     fun diffDecrementor() {
-        if (difficultyLevel.value.equals("Legend"))
-            difficultyLevel.value = "Pro"
-        else if (difficultyLevel.value.equals("Pro"))
-            difficultyLevel.value = "Amateur"
+    fun diffDecrementor() {
+        when {
+            difficultyLevel.value.equals("Legend") -> difficultyLevel.value = "Pro"
+            difficultyLevel.value.equals("Pro") -> difficultyLevel.value = "Amateur"
+        }
     }
 
     fun columnSizeIncrementor() {

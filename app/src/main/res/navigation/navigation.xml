@@ -14,14 +14,13 @@
             android:id="@+id/action_gameFragment_to_menuFragment"
             app:destination="@id/menuFragment"
             app:popUpTo="@id/gameFragment"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
         android:name="com.example.matchthecards.menufragment.MenuFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" >
+        tools:layout="@layout/fragment_menu">
         <action
             android:id="@+id/action_menuFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
